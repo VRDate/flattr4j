@@ -52,23 +52,23 @@ public final class FlattrSocialUtils {
      */
     public static SocialException socialFlattrException(FlattrException ex) {
         if (ex instanceof FlattrServiceException) {
-            return new ServerException(ex.getMessage());
+            return new ServerException(FlattrConnectionFactory.PROVIDER_ID, ex.getMessage());
 
         } else if (ex instanceof ForbiddenException) {
-            return new OperationNotPermittedException(ex.getMessage());
+            return new OperationNotPermittedException(FlattrConnectionFactory.PROVIDER_ID, ex.getMessage());
 
         } else if (ex instanceof NoMeansException) {
             // a more specific Spring Social exception does not exist
-            return new OperationNotPermittedException(ex.getMessage());
+            return new OperationNotPermittedException(FlattrConnectionFactory.PROVIDER_ID, ex.getMessage());
 
         } else if (ex instanceof NotFoundException) {
-            return new ResourceNotFoundException(ex.getMessage());
+            return new ResourceNotFoundException(FlattrConnectionFactory.PROVIDER_ID, ex.getMessage());
 
         } else if (ex instanceof RateLimitExceededException) {
-            return new org.springframework.social.RateLimitExceededException();
+            return new org.springframework.social.RateLimitExceededException(FlattrConnectionFactory.PROVIDER_ID);
 
         } else {
-            return new ApiException(ex.getMessage(), ex);
+            return new ApiException(FlattrConnectionFactory.PROVIDER_ID, ex.getMessage(), ex);
         }
     }
 

@@ -93,8 +93,29 @@ public class FlattrOAuth2Operations implements OAuth2Operations {
     }
 
     @Override
+    public AccessGrant exchangeCredentialsForAccess(String username, String password, MultiValueMap<String, String> additionalParameters) {
+        throw new UnsupportedOperationException("flattr does not support access by credentials");
+    }
+
+    @Override
+    @Deprecated
     public AccessGrant refreshAccess(String refreshToken, String scope, MultiValueMap<String, String> additionalParameters) {
+        return refreshAccess(refreshToken, additionalParameters);
+    }
+
+    @Override
+    public AccessGrant refreshAccess(String refreshToken, MultiValueMap<String, String> additionalParameters) {
         throw new UnsupportedOperationException("flattr does not support refresh_token");
+    }
+
+    @Override
+    public AccessGrant authenticateClient(String scope) {
+        return authenticateClient();
+    }
+
+    @Override
+    public AccessGrant authenticateClient() {
+        throw new UnsupportedOperationException("flattr does not support client password flow");
     }
 
     /**
