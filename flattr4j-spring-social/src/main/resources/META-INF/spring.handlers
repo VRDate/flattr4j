@@ -1,0 +1,1 @@
+http\://www.springframework.org/schema/social/flattr=org.springframework.social.flattr.config.xml.FlattrNamespaceHandler
