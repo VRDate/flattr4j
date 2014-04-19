@@ -18,6 +18,7 @@
  */
 package org.shredzone.flattr4j.connector;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -28,7 +29,9 @@ import java.util.Date;
  *
  * @author Richard "Shred" Körber
  */
-public class RateLimit {
+public class RateLimit implements Serializable {
+    private static final long serialVersionUID = -4217480425094824497L;
+
     private Long limit;
     private Long remaining;
     private Long current;
@@ -36,6 +39,21 @@ public class RateLimit {
 
     public RateLimit() {
         // default constructor
+    }
+
+    /**
+     * Copy constructor, creates a new {@link RateLimit} and copies the values of the
+     * given {@link RateLimit}.
+     *
+     * @param limit
+     *            {@link RateLimit} to be copied
+     * @since 2.9
+     */
+    public RateLimit(RateLimit limit) {
+        this.limit = limit.limit;
+        this.remaining = limit.remaining;
+        this.current = limit.current;
+        this.reset = limit.reset;
     }
 
     /**
